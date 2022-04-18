@@ -203,6 +203,12 @@ class Controller extends BaseController
 		});
 
 		$file_name = $peserta->nisn . '_' . $name . '.jpg';
+		$qrcode_text = $name . ' ' . $peserta->nisn;
+		$qrcode = \QrCode::format('png')
+			->size(175)
+			->generate($qrcode_text);
+
+		$img->insert(base64_encode($qrcode), 'bottom-right', 595, 175);
 
 		$img->save(storage_path() . '/' . $file_name);
 
@@ -259,6 +265,12 @@ class Controller extends BaseController
 		});
 
 		$file_name = $peserta->nisn . '_' . $name . '.jpg';
+		$qrcode_text = $name . ' ' . $peserta->nisn;
+		$qrcode = \QrCode::format('png')
+			->size(175)
+			->generate($qrcode_text);
+
+		$img->insert(base64_encode($qrcode), 'bottom-right', 595, 175);
 
 		$img->save(storage_path() . '/' . $file_name);
 
